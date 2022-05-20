@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+    <form th:action="@{/admin/analyzermodel/save}" th:object="${anlzModel}" method="POST">
+
+        <div class="form-group row">
+            <input type="text" placeholder="AnalyzerName" th:field="*{analyzerName}">
+            <input type="text" placeholder="Analyzer productNumber" th:field="*{analyzerProductNumber}">
+            <input type="hidden" placeholder="AnalyzerId" th:field="${anlzModel.analyzermodelId}">
+        </div>
+        <select th:field = "${anlzModel}" class="form-control" id="dropDownList" >
+            <!--            <option value="0">select option</option>-->
+            <option th:each="option : ${analyzerTypeList}" th:value="${option}" th:text="${option.anlzType}"></option>
+        </select>
+        <select th:field = "${anlzModel}" class="form-control" id="dropDownList2">
+            <!--            <option value="0">select option</option>-->
+            <option th:each="option : ${manufacturerList}" th:value="${option}" th:text="${option.manufacturerName}"></option>
+        </select>
+        <button class="btn btn-info col-2" type="submit">Enter Project</button>
+    </form>
+</div>
+
+
+</body>
+
+</html>
+

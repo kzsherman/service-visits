@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <h3>Analyzer Types</h3>
+    <hr>
+
+    <!--Add New Analyzer Type Button -->
+    <a th:href="@{/admin/analyzertype/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New AnlyzerType
+    </a>
+    <br></br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Analyzer Type</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="anAnalyzerModel : ${analyzerTypesList}">
+            <td th:text="${anAnalyzerModel.anlzType}"/>
+
+            <td>
+                <a th:href="@{/admin/analyzertype/update(id=${anAnalyzerModel.anlzTypeId})}"
+                   class="btn btn-info btn-sm">
+                    View
+                </a>
+                <a th:href="@{/admin/analyzertype/delete(id=${anAnalyzerModel.anlzTypeId})}"
+                   class="btn btn-danger btn-sm"
+                   onClick="if (!(confirm('Are you sure you want to delete this type?'))) return false">
+                    Delete
+                </a>
+
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+
+</html>
+

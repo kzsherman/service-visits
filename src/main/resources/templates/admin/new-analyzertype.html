@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+    <form th:action="@{/admin/analyzertype/save}" th:object="${anlzType}" method="POST">
+
+        <!--  This will be used to bind to the AnalyzerType that was clicked on (USED FOR UPDATES)-->
+        <input type="hidden" th:field="${anlzType.anlzTypeId}"/>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Analyzer Type" th:field="${anlzType.anlzType}">
+        </div>
+
+        <button class="btn btn-info col-2" type="submit">Add Type</button>
+    </form>
+</div>
+
+</body>
+
+</html>
+

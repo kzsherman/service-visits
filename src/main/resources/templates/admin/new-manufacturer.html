@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+    <form th:action="@{/admin/manufacturer/save}" th:object="${manufact}" method="POST">
+
+        <!--  This will be used to bind to the manufacturer that was clicked on (USED FOR UPDATES)-->
+        <input type="hidden" th:field="${manufact.manufactId}"/>
+
+        <div class="form-group ">
+            <input type="text" placeholder="Manufacturer Name" th:field="${manufact.manufacturerName}">
+            <input type="text" placeholder="Support Number" th:field="${manufact.supportNumber}">
+            <input type="text" placeholder="Website" th:field="${manufact.websiteURL}">
+           <label> VIP: <input type="checkbox" name="VIP" th:field="${manufact.primaryVendor}"> </label>
+        </div>
+
+        <button class="btn btn-info col-2" type="submit">Add Manufacturer</button>
+    </form>
+</div>
+
+</body>
+
+</html>
+
+
