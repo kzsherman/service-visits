@@ -18,13 +18,13 @@
             <input type="text" placeholder="Analyzer productNumber" th:field="*{analyzerProductNumber}">
             <input type="hidden" placeholder="AnalyzerId" th:field="${anlzModel.analyzermodelId}">
         </div>
-        <select th:field = "${anlzModel}" class="form-control" id="dropDownList" >
+        <select th:field = "${anlzModel.anlzType}" class="form-control" id="dropDownList" >
             <!--            <option value="0">select option</option>-->
-            <option th:each="option : ${analyzerTypeList}" th:value="${option}" th:text="${option.anlzType}"></option>
+            <option th:each="option : ${analyzerTypeList}" th:value="${option.anlzTypeId}" th:text="${option.anlzType}"></option>
         </select>
-        <select th:field = "${anlzModel}" class="form-control" id="dropDownList2">
+        <select th:field = "${anlzModel.manufact}" class="form-control" id="dropDownList2">
             <!--            <option value="0">select option</option>-->
-            <option th:each="option : ${manufacturerList}" th:value="${option}" th:text="${option.manufacturerName}"></option>
+            <option th:each="option : ${manufacturerList}" th:value="${option.manufactId}" th:text="${option.manufacturerName}"></option>
         </select>
         <button class="btn btn-info col-2" type="submit">Enter Project</button>
     </form>
