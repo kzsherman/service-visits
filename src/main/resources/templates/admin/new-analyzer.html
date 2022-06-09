@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+    <form th:action="@{/admin/analyzer/save}" th:object="${theAnalyzer}" method="POST">
+
+        <input type="hidden" th:field="${theAnalyzer.customr}"/>
+        <input type="hidden" th:field="${theAnalyzer.analyzerId}"/>
+        <div> You are installing equipment for: <input type="text" th:field="${theAnalyzer.customr.name}"/></div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Serial Number" th:field="${theAnalyzer.serialNumber}">
+<!--            <input type="text" placeholder="Analyzer productNumber" th:field="${theAnalyzer.installationDate}">-->
+            <input type="hidden" placeholder="Warranty Duration" th:field="${theAnalyzer.warrantyDuration}">
+        </div>
+        <select th:field = "${theAnalyzer.anlzModel}" class="form-control" id="dropDownList" >
+            <!--            <option value="0">select option</option>-->
+            <option th:each="option : ${analyzerModels}" th:value="${option.analyzermodelId}" th:text="${option.analyzerName + ' PN: ' + option.analyzerProductNumber}"></option>
+        </select>
+<!--        <select th:field = "${anlzModel.manufact}" class="form-control" id="dropDownList2">-->
+<!--            &lt;!&ndash;            <option value="0">select option</option>&ndash;&gt;-->
+<!--            <option th:each="option : ${manufacturerList}" th:value="${option.manufactId}" th:text="${option.manufacturerName}"></option>-->
+<!--        </select>-->
+        <button class="btn btn-info col-2" type="submit">Install</button>
+    </form>
+</div>
+
+
+</body>
+
+</html>

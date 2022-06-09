@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+  <form th:action="@{/admin/customers/save}" th:object="${newCustomer}" method="POST">
+
+    <!--  This will be used to bind to the customer that was clicked on (USED FOR UPDATES)-->
+    <input type="hidden" th:field="${newCustomer.customerId}"/>
+
+    <div class="form-group ">
+      <input type="text" placeholder="Customer Name" th:field="${newCustomer.name}">
+      <input type="text" placeholder="Customer Address" th:field="${newCustomer.address}">
+      <input type="text" placeholder="Website" th:field="${newCustomer.zipCode}">
+      <label> VIP: <input type="checkbox" name="VIP" th:field="${newCustomer.customerVip}"> </label>
+    </div>
+
+    <button class="btn btn-info col-2" type="submit">Add Manufacturer</button>
+  </form>
+</div>
+
+</body>
+
+</html>

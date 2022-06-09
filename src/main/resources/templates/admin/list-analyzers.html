@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <h3>Analyzers</h3>
+    <hr>
+
+    <!--Add New Analyzer Model Employee Button -->
+    <a th:href="@{/admin/analyzers/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New Anlyzer
+    </a>
+    <br></br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Analyzer</th>
+            <th>Product number</th>
+            <th>Manufacturer</th>
+            <th>Analyzer Type</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="anAnalyzer : ${analyzersList}">
+            <td th:text="${anAnalyzer.anlzModel.analyzerName}"/>
+            <td th:text="${anAnalyzer.anlzModel.analyzerProductNumber}"/>
+            <td th:text="${anAnalyzer.serialNumber}"/>
+            <td th:text="${anAnalyzer.installationDate}"/>
+            <td th:text="${anAnalyzer.customr.name}"/>
+            <td>
+                <a th:href="@{/admin/analyzer/update(id=${anAnalyzer.analyzerId})}"
+                   class="btn btn-info btn-sm">
+                    View
+                </a>
+                <a th:href="@{/admin/analyzer/delete(id=${anAnalyzer.analyzerId})}"
+                   class="btn btn-danger btn-sm"
+                   onClick="if (!(confirm('Are you sure you want to delete this analyzer?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
+
+

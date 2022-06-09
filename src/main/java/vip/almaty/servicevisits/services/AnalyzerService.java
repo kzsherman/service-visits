@@ -6,6 +6,7 @@ import vip.almaty.servicevisits.entities.AnalyzerModel;
 import vip.almaty.servicevisits.entities.AnalyzerType;
 import vip.almaty.servicevisits.entities.Manufacturer;
 import vip.almaty.servicevisits.repositories.AnalyzerModelRepository;
+import vip.almaty.servicevisits.repositories.AnalyzerRepository;
 import vip.almaty.servicevisits.repositories.AnalyzerTypeRepository;
 import vip.almaty.servicevisits.repositories.ManufacturersRepository;
 
@@ -15,12 +16,14 @@ public class AnalyzerService {
     private final AnalyzerTypeRepository analyzerTypeRepository;
     private final ManufacturersRepository manufacturersRepository;
     private final AnalyzerModelRepository analyzerModelRepository;
+    private final AnalyzerRepository analyzerRepository;
 
     public AnalyzerService(AnalyzerTypeRepository analyzerTypeRepository
-            , ManufacturersRepository manufacturersRepository, AnalyzerModelRepository analyzerModelRepository) {
+            , ManufacturersRepository manufacturersRepository, AnalyzerModelRepository analyzerModelRepository, AnalyzerRepository analyzerRepository) {
         this.analyzerTypeRepository = analyzerTypeRepository;
         this.manufacturersRepository = manufacturersRepository;
         this.analyzerModelRepository = analyzerModelRepository;
+        this.analyzerRepository = analyzerRepository;
     }
 
     public Iterable<AnalyzerType> getAllAnalyzerTypes () {
@@ -69,5 +72,21 @@ public class AnalyzerService {
 
     public AnalyzerType getAnalyzerTypeById(Long analyzerTypeId) {
         return analyzerTypeRepository.getById(analyzerTypeId);
+    }
+
+    public Iterable<Analyzer> getAllAnalyzers() {
+        return analyzerRepository.findAll();
+    }
+
+    public Analyzer saveNewAnalyzer(Analyzer newAnalyzer) {
+        return analyzerRepository.save(newAnalyzer);
+    }
+
+    public Analyzer findAnalyzerById(long theId) {
+        return analyzerRepository.findById(theId).get();
+    }
+
+    public void deleteAnalyzer(Analyzer theAnalyzer) {
+        analyzerRepository.delete(theAnalyzer);
     }
 }

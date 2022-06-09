@@ -7,12 +7,12 @@ import java.util.List;
 @Entity
 public class Analyzer {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long analyzerId;
     String serialNumber;
     @ManyToOne
     Customer customr;
     @OneToOne
-    @MapsId
     AnalyzerModel anlzModel;
     Date installationDate;
     Integer warrantyDuration;

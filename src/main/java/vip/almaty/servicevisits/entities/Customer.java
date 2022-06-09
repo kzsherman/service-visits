@@ -1,16 +1,21 @@
 package vip.almaty.servicevisits.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long customerId;
     String name;
+
+    String zipCode;
+
+    String address;
+
+    Boolean isCustomerVip;
     @OneToMany (mappedBy = "analyzerId")
     List<Analyzer> analyzers;
 
@@ -47,5 +52,29 @@ public class Customer {
 
     public void setContactPersons(List<ContactPerson> contactPersons) {
         this.contactPersons = contactPersons;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Boolean getCustomerVip() {
+        return isCustomerVip;
+    }
+
+    public void setCustomerVip(Boolean customerVip) {
+        isCustomerVip = customerVip;
     }
 }
