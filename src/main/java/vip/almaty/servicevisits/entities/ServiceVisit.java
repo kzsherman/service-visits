@@ -8,14 +8,14 @@ import java.util.List;
 public class ServiceVisit {
 
     @Id
-    Long servicevisitId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "visit_id")
+    Long visitId;
     Date serviceVisitDate;
     @OneToOne
-    @MapsId
     ServiceVisitType srvcVisitType;
 
     @OneToOne
-    @MapsId
     User user;
 
    @ManyToOne
@@ -24,40 +24,55 @@ public class ServiceVisit {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
     @JoinTable(name="service_sparepart",
-            joinColumns=@JoinColumn(name="servicevisit_id"),
-            inverseJoinColumns= @JoinColumn(name="sparepart_id")
+            joinColumns=@JoinColumn(name="visit_id"),
+            inverseJoinColumns= @JoinColumn(name="part_id")
     )
    List<SparePart> sparePartsInstalled;
 
     String note;
 
-    public User getUser() {
-        return user;
+
+    public ServiceVisit() {
     }
 
-
-    public Long getServicevisitId() {
-        return servicevisitId;
+    public Long getVisitId() {
+        return visitId;
     }
 
-    public void setServicevisitId(Long servicevisitId) {
-        this.servicevisitId = servicevisitId;
+    public void setVisitId(Long visitId) {
+        this.visitId = visitId;
     }
 
     public Date getServiceVisitDate() {
         return serviceVisitDate;
     }
 
-    public void setServiceVisitDate(Date date) {
-        this.serviceVisitDate = date;
+    public void setServiceVisitDate(Date serviceVisitDate) {
+        this.serviceVisitDate = serviceVisitDate;
+    }
+
+    public ServiceVisitType getSrvcVisitType() {
+        return srvcVisitType;
+    }
+
+    public void setSrvcVisitType(ServiceVisitType srvcVisitType) {
+        this.srvcVisitType = srvcVisitType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Analyzer getAnlz() {
         return anlz;
     }
 
-    public void setAnlz(Analyzer analyzer) {
-        this.anlz = analyzer;
+    public void setAnlz(Analyzer anlz) {
+        this.anlz = anlz;
     }
 
     public List<SparePart> getSparePartsInstalled() {
@@ -66,18 +81,6 @@ public class ServiceVisit {
 
     public void setSparePartsInstalled(List<SparePart> sparePartsInstalled) {
         this.sparePartsInstalled = sparePartsInstalled;
-    }
-
-    public ServiceVisitType getSrvcVisitType() {
-        return srvcVisitType;
-    }
-
-    public void setSrvcVisitType(ServiceVisitType serviceVisitType) {
-        this.srvcVisitType = serviceVisitType;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getNote() {

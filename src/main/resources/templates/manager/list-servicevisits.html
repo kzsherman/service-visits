@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <h3>Service Visits</h3>
+    <hr>
+
+    <!--Add New Analyzer Model Employee Button -->
+    <a th:href="@{/manager/servicevisit/choose-analyzer}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New Service Visit
+    </a>
+    <br></br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Analyzer</th>
+            <th>Product number</th>
+            <th>Manufacturer</th>
+            <th>Analyzer Type</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="theServiceVisit : ${serviceVisitsList}">
+            <td th:text="${theServiceVisit.visitId}"/>
+            <td th:text="${theServiceVisit.serviceVisitDate}"/>
+            <td th:text="${theServiceVisit.anlz.customr.name}"/>
+            <td th:text="${theServiceVisit.anlz.anlzModel.analyzerName}"/>
+            <td th:text="${theServiceVisit.anlz.serialNumber}"/>
+            <td th:text="${theServiceVisit.anlz.anlzModel.manufact.manufacturerName}"/>
+
+            <td>
+                <a th:href="@{/manager/serivicevisit/viewdetails(id=${theServiceVisit.visitId})}"
+                   class="btn btn-info btn-sm">
+                    View
+                </a>
+                <a th:href="@{/manager/serivicevisit/update(id=${theServiceVisit.visitId})}"
+                   class="btn btn-danger btn-sm"
+                   onClick="if (!(confirm('Are you sure you want to delete this servicevisit?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
+
+

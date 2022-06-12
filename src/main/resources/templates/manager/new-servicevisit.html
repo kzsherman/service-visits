@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+    <form th:action="@{/manager/servicevisit/save}" th:object="${newServiceVisit}" method="POST">
+
+        <input type="hidden" th:field="${newServiceVisit.anlz}"/>
+
+        <div> You are servicing equipment at: <input type="text" th:field="${analyzerToBeServiced.customr.name}"/></div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Date of service" th:field="${newServiceVisit.serviceVisitDate}">
+            <!--            <input type="text" placeholder="Analyzer productNumber" th:field="${theAnalyzer.installationDate}">-->
+            <input type="textarea" placeholder="Note" th:field="${newServiceVisit.note}">
+        </div>
+        <div class="form-group row">
+            <select th:field="${newServiceVisit.sparePartsInstalled}" multiple="multiple">
+                <option th:each = "theSparePart : ${sparePartsList}"
+                        th:value = "${theSparePart.sparepartId}"
+                        th:text = "${theSparePart.sparepartName}">
+                </option>
+            </select>
+        </div>
+
+        <select th:field = "${newServiceVisit.srvcVisitType}" class="form-control" id="dropDownList" >
+            <!--            <option value="0">select option</option>-->
+            <option th:each="option : ${serviceType}" th:value="${option.srvcVisitTypeId}" th:text="${option.serviceVisitTypeName}"></option>
+        </select>
+        <!--        <select th:field = "${anlzModel.manufact}" class="form-control" id="dropDownList2">-->
+        <!--            &lt;!&ndash;            <option value="0">select option</option>&ndash;&gt;-->
+        <!--            <option th:each="option : ${manufacturerList}" th:value="${option.manufactId}" th:text="${option.manufacturerName}"></option>-->
+        <!--        </select>-->
+        <button class="btn btn-info col-2" type="submit">Finish Service</button>
+    </form>
+</div>
+
+
+</body>
+
+</html>

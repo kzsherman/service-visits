@@ -8,7 +8,7 @@ import java.util.List;
 public class SparePart {
 
     @Id
-    Long sparepartId;
+    Long partId;
     String sparepartNumber;
     String sparepartName;
     BigDecimal sparepartPrice;
@@ -16,17 +16,17 @@ public class SparePart {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
     @JoinTable(name="service_sparepart",
-            joinColumns=@JoinColumn(name="sparepart_id"),
-            inverseJoinColumns= @JoinColumn(name="servicevisit_id")
+            joinColumns=@JoinColumn(name="part_id"),
+            inverseJoinColumns= @JoinColumn(name="visit_id")
     )
     List<ServiceVisit> serviceVisits;
 
     public Long getSparepartId() {
-        return sparepartId;
+        return partId;
     }
 
     public void setSparepartId(Long sparepartId) {
-        this.sparepartId = sparepartId;
+        this.partId = sparepartId;
     }
 
     public String getSparepartNumber() {

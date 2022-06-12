@@ -24,6 +24,11 @@ public class AdminController {
         this.customerService = customerService;
     }
 
+    @GetMapping("/panel")
+    public String showAdminPanel(){
+        return "admin/panel";
+    }
+
     @GetMapping("/analyzertypes")
     public String viewAnalyzerTypes(Model model) {
         Iterable<AnalyzerType> analyzerTypesList = analyzerService.getAllAnalyzerTypes();
