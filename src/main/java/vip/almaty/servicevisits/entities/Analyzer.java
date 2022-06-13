@@ -16,7 +16,7 @@ public class Analyzer {
     AnalyzerModel anlzModel;
     Date installationDate;
     Integer warrantyDuration;
-    @OneToMany (mappedBy = "visitId")
+    @OneToMany
     List<ServiceVisit> serviceVisits;
     Integer serviceVisitFrequency;
     Integer serviceSupportLife;

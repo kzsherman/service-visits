@@ -48,7 +48,7 @@ public class FieldTripService {
         return serviceVisitsRepository.findById(theId).get();
     }
 
-    public List<ServiceVisit> serviceVisits (Analyzer analyzer) {
+    public List<ServiceVisit> getServiceVisitsByAnalyzer (Analyzer analyzer) {
         return serviceVisitsRepository.findServiceVisitsByAnlz(analyzer);
     }
 }

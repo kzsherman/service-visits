@@ -80,7 +80,7 @@ public class ManagerController {
     public String displayServiceHistory(@RequestParam("id") long theId, Model model) {
         Analyzer theAnalyzer = analyzerService.findAnalyzerById(theId);
         System.out.println(theAnalyzer);
-        List<ServiceVisit> serviceVisitsList = theAnalyzer.getServiceVisits();
+        List<ServiceVisit> serviceVisitsList = fieldTripService.getServiceVisitsByAnalyzer(theAnalyzer);
         List<SparePart> spareParts = serviceVisitsList.stream().map(visit -> visit.getSparePartsInstalled()).collect(Collectors.toList()).stream().flatMap(sparePart -> sparePart.stream()).collect(Collectors.toList());
         System.out.println(serviceVisitsList);
         System.out.println(spareParts);
