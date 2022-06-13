@@ -14,6 +14,7 @@ import vip.almaty.servicevisits.services.FieldTripService;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/manager")
@@ -66,6 +67,25 @@ public class ManagerController {
         fieldTripService.saveNewServiceVisit(newServiceVisit);
 
         return "redirect:/manager/servicevisits";
+    }
+
+    @GetMapping("/servicevisit/viewdetails")
+    public String displayServiceVisitDetails(@RequestParam("id") long theId, Model model) {
+        ServiceVisit theServiceVisit = fieldTripService.findServiceVisitById(theId);
+        model.addAttribute("theServiceVisit", theServiceVisit);
+
+        return "manager/service-details";
+    }
+    @GetMapping("/servicevisit/history")
+    public String displayServiceHistory(@RequestParam("id") long theId, Model model) {
+        Analyzer theAnalyzer = analyzerService.findAnalyzerById(theId);
+        System.out.println(theAnalyzer);
+        List<ServiceVisit> serviceVisitsList = theAnalyzer.getServiceVisits();
+        List<SparePart> spareParts = serviceVisitsList.stream().map(visit -> visit.getSparePartsInstalled()).collect(Collectors.toList()).stream().flatMap(sparePart -> sparePart.stream()).collect(Collectors.toList());
+        System.out.println(serviceVisitsList);
+        System.out.println(spareParts);
+        model.addAttribute("serviceVisitsList", serviceVisitsList);
+        return "manager/service-history";
     }
 
 }

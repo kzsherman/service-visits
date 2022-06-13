@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Service visit Details</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item" > Customer name: <div th:text="${theServiceVisit.anlz.customr.name}"></div></li>
+        <li class="list-group-item">Service description <div th:text="${theServiceVisit.note}"></div></li>
+        <li class="list-group-item">Date:<div th:text="${theServiceVisit.serviceVisitDate}"></div></li>
+        <li class="list-group-item">Service visit type:<div th:text="${theServiceVisit.srvcVisitType.serviceVisitTypeName}"></div></li>
+
+      </ul>
+    </div>
+      <div>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+          <tr>
+            <th>Manufacturer Name</th>
+            <th>Website</th>
+            <th>SupportNumber</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="theSparePart : ${theServiceVisit.sparePartsInstalled}">
+            <td th:text="${theSparePart.sparepartName}"/>
+            <td th:text="${theSparePart.sparepartNumber}"/>
+            <td th:text="${theSparePart.sparepartPrice}"/>
+
+            <td>
+              <!--                        <a th:href="@{/admin/manufacturer/update/(id=${theManufacturer.manufactId})}"-->
+              <!--                           class="btn btn-info btn-sm">-->
+              <!--                            View-->
+              <!--                        </a>-->
+              <!--                        <a th:href="@{/admin/manufacturer/delete(id=${theManufacturer.manufactId})}"-->
+              <!--                           class="btn btn-danger btn-sm"-->
+              <!--                           onClick="if (!(confirm('Are you sure you want to delete this manufacturer?'))) return false">-->
+              <!--                            Delete-->
+              <!--                        </a>-->
+
+            </td>
+
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+  <br/>
+
+<!--  <a th:href="@{/admin/analyzer/new/(id=${theCustomer.customerId})}"-->
+<!--     class="btn btn-primary btn-sm mb-3">-->
+<!--    Add New Anlyzer-->
+<!--  </a>-->
+<!--  <div>-->
+<!--    <table class="table table-bordered table-striped">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th>Manufacturer Name</th>-->
+<!--        <th>Website</th>-->
+<!--        <th>SupportNumber</th>-->
+<!--        <th>Status</th>-->
+<!--        <th>Action</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr th:each="theAnalyzer : ${analyzersListByTheCustomer}">-->
+<!--        <td th:text="${theAnalyzer.anlzModel.analyzerName}"/>-->
+<!--        <td th:text="${theAnalyzer.installationDate}"/>-->
+<!--        <td th:text="${theAnalyzer.serialNumber}"/>-->
+
+<!--        <td>-->
+<!--          &lt;!&ndash;                        <a th:href="@{/admin/manufacturer/update/(id=${theManufacturer.manufactId})}"&ndash;&gt;-->
+<!--          &lt;!&ndash;                           class="btn btn-info btn-sm">&ndash;&gt;-->
+<!--          &lt;!&ndash;                            View&ndash;&gt;-->
+<!--          &lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--          &lt;!&ndash;                        <a th:href="@{/admin/manufacturer/delete(id=${theManufacturer.manufactId})}"&ndash;&gt;-->
+<!--          &lt;!&ndash;                           class="btn btn-danger btn-sm"&ndash;&gt;-->
+<!--          &lt;!&ndash;                           onClick="if (!(confirm('Are you sure you want to delete this manufacturer?'))) return false">&ndash;&gt;-->
+<!--          &lt;!&ndash;                            Delete&ndash;&gt;-->
+<!--          &lt;!&ndash;                        </a>&ndash;&gt;-->
+
+<!--        </td>-->
+
+
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+
+
+</div>
+
+</body>
+
+</html>

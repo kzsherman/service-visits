@@ -1,6 +1,7 @@
 package vip.almaty.servicevisits.services;
 
 import org.springframework.stereotype.Service;
+import vip.almaty.servicevisits.entities.Analyzer;
 import vip.almaty.servicevisits.entities.ServiceVisit;
 import vip.almaty.servicevisits.entities.ServiceVisitType;
 import vip.almaty.servicevisits.entities.SparePart;
@@ -40,5 +41,14 @@ public class FieldTripService {
 
     public ServiceVisit saveNewServiceVisit(ServiceVisit newServiceVisit) {
         return serviceVisitsRepository.save(newServiceVisit);
+    }
+
+    public ServiceVisit findServiceVisitById(long theId) {
+
+        return serviceVisitsRepository.findById(theId).get();
+    }
+
+    public List<ServiceVisit> serviceVisits (Analyzer analyzer) {
+        return serviceVisitsRepository.findServiceVisitsByAnlz(analyzer);
     }
 }

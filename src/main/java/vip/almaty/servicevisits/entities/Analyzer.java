@@ -92,4 +92,19 @@ public class Analyzer {
     public void setServiceSupportLife(Integer serviceSupportLife) {
         this.serviceSupportLife = serviceSupportLife;
     }
+
+    @Override
+    public String toString() {
+        return "Analyzer{" +
+                "analyzerId=" + analyzerId +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", customr=" + customr +
+                ", anlzModel=" + anlzModel +
+                ", installationDate=" + installationDate +
+                ", warrantyDuration=" + warrantyDuration +
+                ", serviceVisits=" + serviceVisits +
+                ", serviceVisitFrequency=" + serviceVisitFrequency +
+                ", serviceSupportLife=" + serviceSupportLife +
+                '}';
+    }
 }

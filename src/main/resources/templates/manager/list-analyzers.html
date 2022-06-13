@@ -36,10 +36,9 @@
                    class="btn btn-info btn-sm">
                     New service visit
                 </a>
-                <a th:href="@{/admin/analyzer/delete(id=${anAnalyzer.analyzerId})}"
-                   class="btn btn-danger btn-sm"
-                   onClick="if (!(confirm('Are you sure you want to delete this analyzer?'))) return false">
-                    Delete
+                <a th:href="@{/manager/servicevisit/history(id=${anAnalyzer.analyzerId})}"
+                   class="btn btn-danger btn-sm" >
+                    View History
                 </a>
             </td>
         </tr>
