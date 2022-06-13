@@ -1,12 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
 <body>
 
-service history going to be here
+<nav th:replace="layouts :: navbar"></nav>
 
+<div class="container">
+    <h3>You are viewing service history for an analyzer: </h3>
+    <div th:text="${theAnalyzer.anlzModel.analyzerName}"></div>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Service visit Details</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" > Customer name: <div th:text="${theAnalyzer.customr.name}"></div></li>
+                <li class="list-group-item">Serial number: <div th:text="${theAnalyzer.serialNumber}"></div></li>
+                <li class="list-group-item">Product number:<div th:text="${theAnalyzer.anlzModel.analyzerProductNumber}"></div></li>
+            </ul>
+        </div>
+    </div>
+
+    <br></br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Analyzer</th>
+            <th>Product number</th>
+            <th>Manufacturer</th>
+            <th>Analyzer Type</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="theServiceVisit : ${serviceVisitsList}">
+            <td th:text="${theServiceVisit.serviceVisitDate}"/>
+            <td th:text="${theServiceVisit.note}"/>
+            <td th:text="${theServiceVisit.srvcVisitType}"/>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Analyzer</th>
+            <th>Product number</th>
+            <th>Manufacturer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="theSparepart : ${spareParts}">
+            <td th:text="${theSparepart.sparepartName}"/>
+            <td th:text="${theSparepart.sparepartNumber}"/>
+            <td th:text="${theSparepart.sparepartPrice}"/>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
+
 </html>
+
+

@@ -81,10 +81,16 @@ public class ManagerController {
         Analyzer theAnalyzer = analyzerService.findAnalyzerById(theId);
         System.out.println(theAnalyzer);
         List<ServiceVisit> serviceVisitsList = fieldTripService.getServiceVisitsByAnalyzer(theAnalyzer);
-        List<SparePart> spareParts = serviceVisitsList.stream().map(visit -> visit.getSparePartsInstalled()).collect(Collectors.toList()).stream().flatMap(sparePart -> sparePart.stream()).collect(Collectors.toList());
+        List<SparePart> spareParts = serviceVisitsList.stream()
+                .map(visit -> visit.getSparePartsInstalled())
+                .collect(Collectors.toList()).stream()
+                .flatMap(sparePart -> sparePart.stream())
+                .collect(Collectors.toList());
         System.out.println(serviceVisitsList);
         System.out.println(spareParts);
         model.addAttribute("serviceVisitsList", serviceVisitsList);
+        model.addAttribute("spareParts", spareParts);
+        model.addAttribute("theAnalyzer", theAnalyzer);
         return "manager/service-history";
     }
 
